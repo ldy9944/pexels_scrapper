@@ -6,3 +6,4 @@ pexelsよりキーワードと関連性がある画像を入力した回数分�
 
 selenium  
 requests
+chrom_web_driver
