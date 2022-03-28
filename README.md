@@ -5,5 +5,5 @@ pexelsよりキーワードと関連性がある画像を入力した回数分�
 起動するには以下のPIPが必要となります。  
 
 selenium  
-requests
+requests  
 chrom_web_driver
