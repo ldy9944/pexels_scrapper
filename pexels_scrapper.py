@@ -1,6 +1,6 @@
 import requests
 from selenium import webdriver
-from time import sleep
+import time
 
 # キーワードとダウンロードする画像の数を決め、
 # キーワードを検索した結果ページを定義
@@ -12,15 +12,10 @@ indx = 1
 # 枚数の入力が間違えている場合や30枚を超えるとプログラムを終了
 
 try:
-    max_cnt = int(input('ダウンロードする画像の数を入力してください。(30まで数字のみ)\n'))
+    max_cnt = int(input('ダウンロードする画像の数を入力してください。\n'))
 except ValueError:
     print('数字のみで入力してください\nプログラムを終了致します。')
-    sleep(1)
-    quit()
-
-if max_cnt > 30:
-    print('30枚を超える画像はダウンロードできません。\nプログラムを終了致します。')
-    sleep(1)
+    time.sleep(1)
     quit()
 
 if max_cnt <= 0:
@@ -28,7 +23,7 @@ if max_cnt <= 0:
         raise ValueError
     except ValueError:
         print('正しい数字を入力してください\nプログラムを終了致します。')
-        sleep(1)
+        time.sleep(1)
         quit()
 
 # ブラウザーを開き、画像をリスト化
@@ -36,6 +31,19 @@ if max_cnt <= 0:
 driver = webdriver.Chrome()
 driver.maximize_window()
 driver.get(url)
+
+# スクロールダウンしながら画像を読み込む
+last_height = driver.execute_script("return document.body.scrollHeight")
+
+while True:
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+
+    time.sleep(1)
+
+    new_height = driver.execute_script("return document.body.scrollHeight")
+    if new_height == last_height:
+        break
+    last_height = new_height
 
 photo_items = driver.find_elements_by_class_name('photo-item__img')
 image_urls = [i.get_attribute('data-big-src') for i in photo_items]
