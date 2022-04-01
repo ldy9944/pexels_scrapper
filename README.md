@@ -6,6 +6,7 @@ pexelsよりキーワードと関連性がある画像を入力した回数分�
 
 selenium  
 requests  
-chrom_web_driver
+Chrome_web_driver
 
-サーバーの制限により最大ダウンロード数は30枚となっております。
+## 2022年4月1日更新
+30枚ダウンロード制限を解決いたしました。
