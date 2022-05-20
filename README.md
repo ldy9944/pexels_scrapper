@@ -8,5 +8,5 @@ selenium
 requests  
 Chrome_web_driver
 
-## 2022年4月1日更新
+## 2022年5月20日更新
 30枚ダウンロード制限を解決いたしました。
