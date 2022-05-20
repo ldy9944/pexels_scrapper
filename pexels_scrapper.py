@@ -1,5 +1,6 @@
 import requests
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 import time
 
 # キーワードとダウンロードする画像の数を決め、
@@ -32,13 +33,16 @@ driver = webdriver.Chrome()
 driver.maximize_window()
 driver.get(url)
 
-# スクロールダウンしながら画像を読み込む
+# 画像を読み込む
+
+SCROLL_PAUSE_TIME = 0.5
+
 last_height = driver.execute_script("return document.body.scrollHeight")
 
 while True:
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
-    time.sleep(1)
+    time.sleep(SCROLL_PAUSE_TIME)
 
     new_height = driver.execute_script("return document.body.scrollHeight")
     if new_height == last_height:
